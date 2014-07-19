@@ -1,0 +1,59 @@
+package org.darkstorm.minecraft.gui.theme.Jupiter;
+
+import com.jupiter.utils.GuiUtils;
+import org.darkstorm.minecraft.gui.component.Component;
+import org.darkstorm.minecraft.gui.component.Panel;
+import org.darkstorm.minecraft.gui.layout.Constraint;
+import org.darkstorm.minecraft.gui.theme.AbstractComponentUI;
+import org.darkstorm.minecraft.gui.util.RenderUtil;
+
+import java.awt.*;
+
+import static org.lwjgl.opengl.GL11.*;
+
+public class JupiterPanelUI extends AbstractComponentUI<Panel> {
+    @SuppressWarnings("unused")
+    private final JupiterTheme theme;
+
+    JupiterPanelUI(JupiterTheme theme) {
+        super(Panel.class);
+        this.theme = theme;
+
+        foreground = Color.WHITE;
+        background = new Color(128, 128, 128, 128);
+    }
+
+    @Override
+    protected void renderComponent(Panel component) {
+        if (component.getParent() != null)
+            return;
+        Rectangle area = component.getArea();
+        translateComponent(component, false);
+        glEnable(GL_BLEND);
+        glDisable(GL_TEXTURE_2D);
+        glDisable(GL_CULL_FACE);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        RenderUtil.setColor(component.getBackgroundColor());
+        GuiUtils.getInstance().drawGradientRect(2, 2, area.width, area.height, 0x59181818, 0x59181818);
+        glEnable(GL_CULL_FACE);
+        glEnable(GL_TEXTURE_2D);
+        glDisable(GL_BLEND);
+        translateComponent(component, true);
+    }
+
+    @Override
+    protected Dimension getDefaultComponentSize(Panel component) {
+        Component[] children = component.getChildren();
+        Rectangle[] areas = new Rectangle[children.length];
+        Constraint[][] constraints = new Constraint[children.length][];
+        for (int i = 0; i < children.length; i++) {
+            Component child = children[i];
+            Dimension size = child.getTheme().getUIForComponent(child)
+                    .getDefaultSize(child);
+            areas[i] = new Rectangle(0, 0, size.width, size.height);
+            constraints[i] = component.getConstraints(child);
+        }
+        return component.getLayoutManager().getOptimalPositionedSize(areas,
+                constraints);
+    }
+}

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lwjgl_util">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../MCP/lib/lwjgl_util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../MCP/lib/lwjgl_util_applet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../MCP/lib/lwjgl.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

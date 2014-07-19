@@ -1,0 +1,70 @@
+---- Minecraft Crash Report ----
+// Oops.
+
+Time: 13/07/14 22:37
+Description: Initializing game
+
+java.lang.UnsatisfiedLinkError: org.lwjgl.opengl.LinuxDisplay.nSetClassHint(JJJJ)V
+	at org.lwjgl.opengl.LinuxDisplay.nSetClassHint(Native Method)
+	at org.lwjgl.opengl.LinuxDisplay.setClassHint(LinuxDisplay.java:790)
+	at org.lwjgl.opengl.LinuxDisplay.createWindow(LinuxDisplay.java:492)
+	at org.lwjgl.opengl.Display.createWindow(Display.java:306)
+	at org.lwjgl.opengl.Display.create(Display.java:848)
+	at org.lwjgl.opengl.Display.create(Display.java:757)
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:384)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:731)
+	at net.minecraft.client.main.Main.main(Main.java:144)
+	at Start.main(Start.java:7)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at org.lwjgl.opengl.LinuxDisplay.nSetClassHint(Native Method)
+	at org.lwjgl.opengl.LinuxDisplay.setClassHint(LinuxDisplay.java:790)
+	at org.lwjgl.opengl.LinuxDisplay.createWindow(LinuxDisplay.java:492)
+	at org.lwjgl.opengl.Display.createWindow(Display.java:306)
+	at org.lwjgl.opengl.Display.create(Display.java:848)
+	at org.lwjgl.opengl.Display.create(Display.java:757)
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:384)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.Minecraft.run(Minecraft.java:731)
+	at net.minecraft.client.main.Main.main(Main.java:144)
+	at Start.main(Start.java:7)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:134)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.7.10
+	Operating System: Linux (amd64) version 3.13.0-24-generic
+	Java Version: 1.7.0_55, Oracle Corporation
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 112059608 bytes (106 MB) / 142082048 bytes (135 MB) up to 1660944384 bytes (1584 MB)
+	JVM Flags: 0 total; 
+	AABB Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	Launched Version: mcp
+	LWJGL: 2.9.1
+	OpenGL: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+	GL Caps: 
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: ~~ERROR~~ NullPointerException: null
+	Profiler Position: N/A (disabled)
+	Vec3 Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	Anisotropic Filtering: Off (1)

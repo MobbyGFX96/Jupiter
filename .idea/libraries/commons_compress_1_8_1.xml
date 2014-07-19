@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="commons-compress-1.8.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jars/libraries/org/apache/commons/commons-compress/1.8.1/commons-compress-1.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/libraries/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/libraries/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/libraries/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/libraries/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/libraries/org/apache/logging/log4j/log4j-core/2.0-beta9/log4j-core-2.0-beta9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
