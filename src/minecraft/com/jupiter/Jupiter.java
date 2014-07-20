@@ -18,7 +18,7 @@ public class Jupiter extends Wrapper {
     private String CLIENT_NAME = "Jupiter";
 
     /**
-     * Classes References
+     * Class References
      */
     private FontManager fontManager;
     private ModuleManager moduleManager;

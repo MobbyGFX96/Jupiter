@@ -122,7 +122,6 @@ public class ReliantChat extends GuiNewChat {
                                 var10 = 1.0D;
                             }
 
-                            var10 *= var10;
                             var12 = (int) (255.0D);
 
                             if (var3) {
