@@ -40,7 +40,6 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
 
     private static final Set field_152175_f = Sets.newHashSet(new String[]{"http", "https"});
     private static final Logger logger = LogManager.getLogger();
-    private static final String __OBFID = "CL_00000682";
     protected GuiTextField guiTextField;
     private String field_146410_g = "";
     private int field_146416_h = -1;
@@ -49,13 +48,13 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
     private int field_146413_s;
     private List messageList = new ArrayList();
     private URI field_146411_u;
-    private String field_146409_v = "";
+    private String message = "";
 
     public GuiChat() {
     }
 
-    public GuiChat(String p_i1024_1_) {
-        this.field_146409_v = p_i1024_1_;
+    public GuiChat(String message) {
+        this.message = message;
     }
 
     public void initGui() {
@@ -65,7 +64,7 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
         this.guiTextField.func_146203_f(100);
         this.guiTextField.func_146185_a(false);
         this.guiTextField.setFocused(true);
-        this.guiTextField.setText(this.field_146409_v);
+        this.guiTextField.setText(this.message);
         this.guiTextField.func_146205_d(false);
     }
 
@@ -78,27 +77,27 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
         this.guiTextField.updateCursorCounter();
     }
 
-    protected void keyTyped(char par1, int par2) {
+    protected void keyTyped(char character, int key) {
         this.field_146414_r = false;
-        if (par2 == 15) {
+        if (key == 15) {
             this.completePlayerName();
         } else {
             this.field_146417_i = false;
         }
 
-        if (par2 == 1) {
+        if (key == 1) {
             this.mc.displayGuiScreen((GuiScreen) null);
-        } else if (par2 != 28 && par2 != 156) {
-            if (par2 == 200) {
+        } else if (key != 28 && key != 156) {
+            if (key == 200) {
                 this.func_146402_a(-1);
-            } else if (par2 == 208) {
+            } else if (key == 208) {
                 this.func_146402_a(1);
-            } else if (par2 == 201) {
+            } else if (key == 201) {
                 this.mc.ingameGUI.getChatGUI().func_146229_b(this.mc.ingameGUI.getChatGUI().func_146232_i() - 1);
-            } else if (par2 == 209) {
+            } else if (key == 209) {
                 this.mc.ingameGUI.getChatGUI().func_146229_b(-this.mc.ingameGUI.getChatGUI().func_146232_i() + 1);
             } else {
-                this.guiTextField.textboxKeyTyped(par1, par2);
+                this.guiTextField.textboxKeyTyped(character, key);
             }
         } else {
             String var3 = this.guiTextField.getText().trim();
@@ -229,7 +228,7 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
             this.field_146413_s = 0;
             String var2 = this.guiTextField.getText().substring(var1).toLowerCase();
             var3 = this.guiTextField.getText().substring(0, this.guiTextField.func_146198_h());
-            this.func_146405_a(var3, var2);
+            this.sendPacketTabComplete(var3, var2);
             if (this.messageList.isEmpty()) {
                 return;
             }
@@ -254,9 +253,9 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
         this.guiTextField.func_146191_b((String) this.messageList.get(this.field_146413_s++));
     }
 
-    private void func_146405_a(String p_146405_1_, String p_146405_2_) {
-        if (p_146405_1_.length() >= 1) {
-            this.mc.thePlayer.sendQueue.addToSendQueue(new C14PacketTabComplete(p_146405_1_));
+    private void sendPacketTabComplete(String par1, String par2) {
+        if (par1.length() >= 1) {
+            this.mc.thePlayer.sendQueue.addToSendQueue(new C14PacketTabComplete(par1));
             this.field_146414_r = true;
         }
     }
@@ -264,6 +263,7 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
     public void func_146402_a(int p_146402_1_) {
         int var2 = this.field_146416_h + p_146402_1_;
         int var3 = this.mc.ingameGUI.getChatGUI().getSentMessages().size();
+
         if (var2 < 0) {
             var2 = 0;
         }
@@ -341,12 +341,12 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
         super.drawScreen(x, y, f);
     }
 
-    public void func_146406_a(String[] p_146406_1_) {
+    public void func_146406_a(String[] par1) {
         if (this.field_146414_r) {
             this.field_146417_i = false;
             this.messageList.clear();
-            String[] var2 = p_146406_1_;
-            int var3 = p_146406_1_.length;
+            String[] var2 = par1;
+            int var3 = par1.length;
 
             for (int var4 = 0; var4 < var3; ++var4) {
                 String var5 = var2[var4];
@@ -356,7 +356,7 @@ public class GuiChat extends GuiScreen implements GuiYesNoCallback {
             }
 
             String var6 = this.guiTextField.getText().substring(this.guiTextField.func_146197_a(-1, this.guiTextField.func_146198_h(), false));
-            String var7 = StringUtils.getCommonPrefix(p_146406_1_);
+            String var7 = StringUtils.getCommonPrefix(par1);
             if (var7.length() > 0 && !var6.equalsIgnoreCase(var7)) {
                 this.guiTextField.func_146175_b(this.guiTextField.func_146197_a(-1, this.guiTextField.func_146198_h(), false) - this.guiTextField.func_146198_h());
                 this.guiTextField.func_146191_b(var7);

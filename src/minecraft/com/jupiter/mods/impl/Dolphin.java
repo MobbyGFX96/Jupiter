@@ -18,7 +18,7 @@ public class Dolphin extends Module {
 
     @Override
     public void onPlayerUpdate(EntityPlayerSP player) {
-        if (isEnabled()) {
+        if (isState()) {
             count++;
             if (count >= 3) {
                 if (getPlayer().handleWaterMovement()) {

@@ -1,5 +1,6 @@
 package com.jupiter.managers;
 
+import com.jupiter.Jupiter;
 import com.jupiter.mods.Module;
 import com.jupiter.mods.impl.Dolphin;
 import com.jupiter.mods.impl.JupiterGui;
@@ -24,15 +25,17 @@ public class ModuleManager extends GuiScreen {
         modules.add(new JupiterGui());
     }
 
-    @Override
-    public void drawScreen(int x, int y, float f) {
-
-    }
-
     public void onKeyPressed() {
         int key = Keyboard.getEventKey();
         for (Module module : getModules())
             module.onKeyPressed(key);
+        for (int i = 0; i < modules.size(); i++) {
+            Module module = modules.get(i);
+            if (module.getState())
+                activeModules.add(module);
+            else if (!module.getState())
+                activeModules.remove(module);
+        }
     }
 
     public List<Module> getModules() {

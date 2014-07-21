@@ -124,7 +124,7 @@ public final class JupiterGuiManager extends AbstractGuiManager {
             button.addButtonListener(new ButtonListener() {
                 @Override
                 public void onButtonPress(Button button) {
-                    updateModule.toggle();
+                    updateModule.toggleModule();
                 }
             });
             frame.add(button, GridLayoutManager.HorizontalGridConstraint.RIGHT);

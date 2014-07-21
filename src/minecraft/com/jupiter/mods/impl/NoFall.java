@@ -19,7 +19,7 @@ public class NoFall extends Module {
 
     @Override
     public void beforeUpdate(EntityPlayerSP player) {
-        if (isEnabled()) {
+        if (isState()) {
             if (getPlayer().fallDistance > 2.0F) {
                 getPlayer().sendQueue.addToSendQueue(new C03PacketPlayer(true));
                 if ((!getPlayer().onGround) && (blockBelowPlayer())) {

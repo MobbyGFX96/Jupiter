@@ -12,11 +12,11 @@ public class GuiSleepMP extends GuiChat {
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height - 40, I18n.format("multiplayer.stopSleeping", new Object[0])));
     }
 
-    protected void keyTyped(char par1, int par2) {
-        if (par2 == 1) {
+    protected void keyTyped(char character, int key) {
+        if (key == 1) {
             this.func_146418_g();
-        } else if (par2 != 28 && par2 != 156) {
-            super.keyTyped(par1, par2);
+        } else if (key != 28 && key != 156) {
+            super.keyTyped(character, key);
         } else {
             String var3 = this.guiTextField.getText().trim();
             if (!var3.isEmpty()) {

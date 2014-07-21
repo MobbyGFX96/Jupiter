@@ -1,6 +1,5 @@
 package com.jupiter.mods;
 
-import com.jupiter.Jupiter;
 import com.jupiter.Wrapper;
 import net.minecraft.client.entity.EntityPlayerSP;
 import org.lwjgl.input.Keyboard;
@@ -15,7 +14,7 @@ public abstract class Module extends Wrapper {
     private int keybind;
     private int colour;
     private ModuleType type;
-    private boolean isEnabled;
+    private boolean state;
     private boolean isVisible;
     private boolean toggleable;
 
@@ -84,12 +83,12 @@ public abstract class Module extends Wrapper {
 
     public void onKeyPressed(int key) {
         if (key == keybind) {
-            toggle();
+            toggleModule();
         }
     }
 
-    public final void toggle() {
-        setState(!isEnabled);
+    public final void toggleModule() {
+        setState(!state);
         onToggled();
     }
 
@@ -125,8 +124,8 @@ public abstract class Module extends Wrapper {
         this.isVisible = isVisible;
     }
 
-    public boolean isEnabled() {
-        return isEnabled;
+    public boolean getState() {
+        return state;
     }
 
     public ModuleType getModuleType() {
@@ -138,15 +137,11 @@ public abstract class Module extends Wrapper {
     }
 
     public final void setState(boolean flag) {
-        isEnabled = flag;
-        if (isEnabled()) {
+        state = flag;
+        if (getState()) {
             onEnable();
-            if (isVisible) {
-                Jupiter.getInstance().getModuleManager().getActiveModules().add(this);
-            }
         } else {
             onDisable();
-            Jupiter.getInstance().getModuleManager().getActiveModules().remove(this);
         }
     }
 
